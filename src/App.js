@@ -2,6 +2,13 @@ import React from 'react'
 // import * as BooksAPI from './BooksAPI'
 import './App.css'
 
+//import BooksSearch and BooksShelf componenets
+
+import BooksSearch from './BooksSearch'
+import BooksShelf from './BooksShelf'
+
+
+
 class BooksApp extends React.Component {
   state = {
     /**
@@ -15,7 +22,11 @@ class BooksApp extends React.Component {
 
   render() {
     return (
+
       <div className="app">
+				
+	<BooksSearch />
+		<BooksShelf />
         {this.state.showSearchPage ? (
           <div className="search-books">
             <div className="search-books-bar">
