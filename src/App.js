@@ -8,6 +8,7 @@ import './App.css'
 import BooksSearch from './BooksSearch'
 import BooksShelf from './BooksShelf'
 
+
 //imports Route component
 import { Route } from 'react-router-dom'
 
@@ -26,6 +27,33 @@ componentDidMount(){
 		BooksAPI.getAll().then((books) => {
 		this.setState({ books: books})
 	})}	
+
+
+
+    getShelfBooks(shelfName){
+        return this.state.books.filter((b) => b.shelf === shelfName)
+    }
+
+    changeShelf = (book, newShelf) => {
+        BooksAPI.update(book, newShelf).then(() => {
+            book.shelf = newShelf;
+            this.setState(state => ({
+                books: state.books.filter(b => b.id !== book.id).concat([ book ])
+            }));
+        });
+    };
+
+
+
+
+
+
+
+
+
+
+
+
 
   render() {
     return (
@@ -53,6 +81,7 @@ componentDidMount(){
 					/>	
 		)}/>
 			 
+
  
       </div>
 

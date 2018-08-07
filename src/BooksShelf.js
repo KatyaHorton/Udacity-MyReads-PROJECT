@@ -1,47 +1,43 @@
 import React from 'react'
-// import * as BooksAPI from './BooksAPI'
+import * as BooksAPI from './BooksAPI'
 import './App.css'
-
-//imports Link component
 import { Link } from 'react-router-dom' 
 import Shelf from './Shelf'
 
 class BooksShelf extends React.Component {
-  state = {
-	  
-  }
+
 
   render() {
     return (
-      <div>
+     
 		<div className="list-books">
-            <div className="list-books-title">
-              <h1>MyReads</h1>
-            </div>
-		
- 
-		
-		
-            <div className="list-books-content">
-              <div>
-		
-	<Shelf title='Currently Reading' 
-		   books={this.props.books} 
-		/>        
-	<Shelf title='Read' />        
-	<Shelf title='Want To Read' />   
-              
-            <div className="open-search">
-			
-			<Link to='/search'> 
-					Add a book
-			< /Link>
-			
-            </div>
-          </div>
+			<div className="list-books-title">
+				  <h1>MyReads</h1>
+			</div>
+			<div className="list-books-content">
+
+						<Shelf 
+							title='Currently Reading' 
+							books={this.props.books}	
+						/>        
+
+						<Shelf 
+							title='Read' 
+							books={this.props.books}
+						/>        
+
+						<Shelf 
+							title='Want To Read' 
+							books={this.props.books}
+			/>   
+
+
+						  <div className="open-search">
+							<Link to='/search'>Add a book< /Link>
+						  </div>
+			</div>
 		</div>
-		</div>
-		</div>
+		
     )
   }
 }
