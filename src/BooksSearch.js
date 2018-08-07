@@ -4,37 +4,28 @@ import { Link } from 'react-router-dom'
 import escapeRegExp from 'escape-string-regexp' 
 import sortBy from 'sort-by'
 import Book from "./Book"
-
+import * as BooksAPI from './BooksAPI'
 
 class BooksSearch extends React.Component {
 
- state = {
-	  query: ''
-  		}
+	 state = {
+		 searchedBooks: []
+	 }
 
-updateQuery = (query) => {
-	this.setState({ query: query.trim() })
-}
+	search = (query) => {
+		BooksAPI.search(query.trim())
+		  .then(response => {
+			if (response && response.length) {
+				this.setState({ searchedBooks: response })
+			} else {
+				this.setState({ searchedBooks: [] })
+			}
+		  })
+	}
  
 
   render() {
-
-  let showBooks
  
-  	if (this.state.query) {
-		const match = new RegExp(escapeRegExp(this.state.query), 'i')
-		showBooks = this.props.books.filter(
-		(book) => match.test(book.title) || 
-			match.test(book.authors) ||
-			match.test(book.publisher) ||
-			match.test(book.subtitle)
-         									)
-	} else {
-			showBooks = []
-		}
-	  
-
-	  
     return (
 		<div className="search-books">
             <div className="search-books-bar">
@@ -48,13 +39,15 @@ updateQuery = (query) => {
 						type="text" 
 						placeholder="Search by title or author"
 						value={this.state.query}
-						onChange={(event) => this.updateQuery(event.target.value)}
+						onChange={(event) => {
+							this.search(event.target.value)
+						}}
 					/>
               </div>
             </div>
             <div className="search-books-results">
               <ol className="books-grid">
-				 {showBooks.map((book) => (
+				 {this.state.searchedBooks.map((book) => (
 					<li>
 				 <Book book={ book } />
 					</li>
