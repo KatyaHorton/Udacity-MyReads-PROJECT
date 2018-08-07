@@ -8,6 +8,8 @@ import { Link } from 'react-router-dom'
 //imports packages to update state to filter books
 import escapeRegExp from 'escape-string-regexp' 
 import sortBy from 'sort-by'
+import Book from "./Book"
+
 
 class BooksSearch extends React.Component {
  
@@ -20,21 +22,27 @@ class BooksSearch extends React.Component {
 updateQuery = (query) => {
 	this.setState({ query: query.trim() })
 }
-
+ 
   render() {
-	  
+
+//creates new variable which will display only books with fit the filter based on the state of query
   let showBooks
+ 
+//search must match either book author or title
   	if (this.state.query) {
 		const match = new RegExp(escapeRegExp(this.state.query), 'i')
 		showBooks = this.props.books.filter(
-		(book) => match.test(book.title)
+		(book) => match.test(book.title) || 
+			match.test(book.authors) ||
+			match.test(book.publisher) ||
+			match.test(book.subtitle)
          									)
-		} else {
-			showBooks = this.props.books
+//if it does not match any of them, showBooks should be an empty string  
+	} else {
+			showBooks = []
 		}
 	  
-//sorts books by name		
-		showBooks.sort(sortBy('name'))
+
 	  
     return (
       <div>
@@ -72,22 +80,9 @@ updateQuery = (query) => {
               <ol className="books-grid">
 				 {showBooks.map((book) => (
 					<li>
-					<div className="book">
-							<div className="book-top">
-								<div className="book-cover" style={{ width: 128, height: 193, backgroundImage: 'url()' }}></div>
-							<div className="book-shelf-changer"> 	    
-								<select>
-									<option value="move" disabled>Move to...</option>
-									<option value="currentlyReading">Currently Reading</option>
-									<option value="wantToRead">Want to Read</option>
-									<option value="read">Read</option>
-									<option value="none">None</option>
-								</select>
-							</div>        
-						</div>
-						 <div className="book-title">{book.title}</div>
-						 <div className="book-authors">{book.authors}</div>
-					</div>
+
+				 <Book book={ book }/>
+
 					</li>
 	))}
 				  
