@@ -4,9 +4,7 @@ import './App.css'
 
 //imports Link component
 import { Link } from 'react-router-dom' 
-import Book from './Book'
-
-import Shelf from '.Shelf'
+import Shelf from './Shelf'
 
 class BooksShelf extends React.Component {
   state = {
@@ -15,21 +13,41 @@ class BooksShelf extends React.Component {
 
   render() {
     return (
-
+      <div>
+		<div className="list-books">
+            <div className="list-books-title">
+              <h1>MyReads</h1>
+            </div>
 		
-
+ 
+		
+		
+            <div className="list-books-content">
+              <div>
+		
+	<Shelf title='Currently Reading' 
+		   books={this.props.books} 
+		/>        
+	<Shelf title='Read' />        
+	<Shelf title='Want To Read' />   
+              
             <div className="open-search">
 			
-			<Link
- 				to='/search'
- 					className=''> 
+			<Link to='/search'> 
 					Add a book
 			< /Link>
 			
             </div>
-          </div></div>
+          </div>
+		</div>
+		</div>
+		</div>
     )
   }
 }
 
 export default BooksShelf
+
+
+
+
