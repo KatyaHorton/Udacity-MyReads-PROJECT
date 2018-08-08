@@ -6,78 +6,75 @@ import { Route } from 'react-router-dom'
 import * as BooksAPI from './BooksAPI'
 
 
-
 class BooksApp extends React.Component {
-	
-	 state = {
-		 searchedBooks: [],
-		 	shelfBooks: []
-	 }
+
+	state = {
+		searchedBooks: [],
+		shelfBooks: []
+	}
 
 	search = (query) => {
 		BooksAPI.search(query.trim())
-		  .then(response => {
-			if (response && response.length) {
-				this.setState({ searchedBooks: response })
-			} else {
-				this.setState({ searchedBooks: [] })
-			}
-		  })
+			.then(response => {
+				if (response && response.length) {
+					this.setState({
+						searchedBooks: response
+					})
+				} else {
+					this.setState({
+						searchedBooks: []
+					})
+				}
+			})
 	}
- 	
-	
-	
-componentDidMount(){
+
+	componentDidMount() {
 		BooksAPI.getAll().then((shelfBooks) => {
-		this.setState({ shelfBooks: shelfBooks})
-	})}	 
-
-
-
-
-changeShelf = (newBook, newShelf) => {
-	BooksAPI.update(newBook, newShelf).then(() => {
-		newBook.shelf = newShelf;
+			this.setState({
+				shelfBooks: shelfBooks
+			})
+		});
+	}
 		
-	this.setState(state => ({
-                shelfBooks: state.shelfBooks.filter(b => b.id !== newBook.id).concat([ newBook ])
-            }))
-	})
-}
 	
+	changeShelf = (newBook, newShelf) => {
+		BooksAPI.update(newBook, newShelf).then(() => {
+			newBook.shelf = newShelf
+			this.setState(state => ({
+				shelfBooks: state.shelfBooks.filter(b => b.id !== newBook.id).concat([newBook])
+			}))
+		})
+	}
 	
-	
-  render() {
-    return (
+	updateSearch = () => {
+		 this.setState({ searchedBooks: [] });
+	}
 
-      <div className="app">
-
-        <Route exact path='/'
-			render={() =>
-			(<BooksShelf  
-			  shelfBooks = { this.state.shelfBooks }
-			  changeShelf = { this.changeShelf }	
-			 
-			 	
-			 />	
-		)}/>
-
-
-		<Route path='/search'
-			render={() =>
-			(<BooksSearch  
-			 	searchedBooks={ this.state.searchedBooks }
-			 	search = {this.search}
-				changeShelf = { this.changeShelf }
+	render() {
+		return (
+			<div className = "app" >
+				<Route exact path = '/' render = {() => ( 
+					<BooksShelf 
+						shelfBooks = { this.state.shelfBooks }
+						changeShelf = { this.changeShelf }
+						updateSearch = { this.updateSearch }
 					/>	
-		)}/>
-			 
+														)}
+				/>
 
- 
-      </div>
-
-    )
-  }
+			<Route path = '/search'
+			render = {() => ( 
+					  <BooksSearch 
+					  	searchedBooks = { this.state.searchedBooks }
+						search = { this.search }
+						changeShelf = { this.changeShelf }
+						shelfBooks = { this.state.shelfBooks }
+					  />	
+							)}
+			/>
+			</div>
+		)
+	}
 }
 
 export default BooksApp

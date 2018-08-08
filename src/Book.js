@@ -6,17 +6,14 @@ state = {
 	currentShelf: this.props.book.shelf
 }
 
-    changeShelf = (event) => {
-        this.props.changeShelf(this.props.book, event.target.value);
-        this.setState({
-            currentShelf: event.target.value
-        })
-    }
+changeShelf = (event) => {
+	this.props.changeShelf(this.props.book, event.target.value);
+	this.setState({
+		currentShelf: event.target.value
+        		  })
+    						}
 
-	
-
-  render() {
-	  
+  render() {	  
     return (
 		<div className='book' >
 			<div className='book-top'>
@@ -25,21 +22,20 @@ state = {
 						<select
 							value={this.state.currentShelf}
 							onChange={this.changeShelf}
-		>
-							<option value="move" disabled>Move to...</option>
+						>
+		<option value="none">None</option>					
+		<option value="move" disabled>Move to...</option>
 							<option value="currentlyReading">Currently Reading</option>
 							<option value="wantToRead">Want to Read</option>
 							<option value="read">Read</option>
-							<option value="none">None</option>
+							
 						</select>
 					</div>
 				</div>
-					 <div className='book-title'>{this.props.book.title}</div>
-					 <div className='book-authors'>{this.props.book.authors}</div>
-		{console.log(this.state.currentShelf)}
-				</div>
-	
-	)} }
+				<div className='book-title'>{this.props.book.title}</div>
+				<div className='book-authors'>{this.props.book.authors}</div>
+			</div>
+	)}}
      
 
 export default Book
