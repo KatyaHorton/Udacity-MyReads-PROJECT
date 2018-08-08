@@ -21,7 +21,6 @@ componentDidMount(){
 				  <h1>MyReads</h1>
 			</div>
 			<div className="list-books-content">
-{console.log("this is shelfBooks now:", this.props.shelfBooks)}
 						<Shelf 
 							title='Currently Reading'
 							shelfBooks={this.getShelfBooks("currentlyReading")}

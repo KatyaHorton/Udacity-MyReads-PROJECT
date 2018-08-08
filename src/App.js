@@ -13,10 +13,12 @@ class BooksApp extends React.Component {
 		shelfBooks: []
 	}
 
+// {((response.map((b) => b.imageLinks.thumbnail)))*/}
+
 	search = (query) => {
 		BooksAPI.search(query.trim())
 			.then(response => {
-				if (response && response.length) {
+				 		if (response && response.length) {
 					this.setState({
 						searchedBooks: response
 					})
@@ -25,8 +27,22 @@ class BooksApp extends React.Component {
 						searchedBooks: []
 					})
 				}
-			})
-	}
+			}).catch(error => {
+
+/*
+
+The search for query biography throws an error of Cannot read property 'thumbnail' of undefined. 
+
+You should check if API response contains thumbnail property and handle the error. 
+
+I also suggest you use placeholder image for the book not having thumbnail
+
+*/			
+	console.log('PLEASE HELP ME')
+		
+		})}
+	
+
 
 	componentDidMount() {
 		BooksAPI.getAll().then((shelfBooks) => {
@@ -52,7 +68,9 @@ class BooksApp extends React.Component {
 
 	render() {
 		return (
+				
 			<div className = "app" >
+
 				<Route exact path = '/' render = {() => ( 
 					<BooksShelf 
 						shelfBooks = { this.state.shelfBooks }
