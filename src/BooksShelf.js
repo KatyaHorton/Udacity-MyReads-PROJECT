@@ -6,30 +6,12 @@ import Shelf from './Shelf'
 
 class BooksShelf extends React.Component {
 
-  state = { 
- 	shelfBooks: []
-  }
-
-
-componentDidMount(){
-		BooksAPI.getAll().then((shelfBooks) => {
-		this.setState({ shelfBooks: shelfBooks})
-	})}	 
+ 
 
 getShelfBooks(shelfName){
-	return this.state.shelfBooks.filter((book) => book.shelf === shelfName)
+	return this.props.shelfBooks.filter((book) => book.shelf === shelfName)
 }
 
-
-changeShelf = (newBook, newShelf) => {
-	BooksAPI.update(newBook, newShelf).then(() => {
-		newBook.shelf = newShelf;
-		
-	this.setState(state => ({
-                shelfBooks: state.shelfBooks.filter(b => b.id !== newBook.id).concat([ newBook ])
-            }))
-	})
-}
 	
   render() {
     return (
@@ -39,23 +21,23 @@ changeShelf = (newBook, newShelf) => {
 				  <h1>MyReads</h1>
 			</div>
 			<div className="list-books-content">
-{console.log("this is shelfBooks now:", this.state.shelfBooks)}
+{console.log("this is shelfBooks now:", this.props.shelfBooks)}
 						<Shelf 
 							title='Currently Reading'
 							shelfBooks={this.getShelfBooks("currentlyReading")}
-							changeShelf={ this.changeShelf }
+							changeShelf={ this.props.changeShelf }
 						/>        
 
 						<Shelf 
 							title='Read' 
 							shelfBooks={this.getShelfBooks("read")}
-							changeShelf={ this.changeShelf }
+							changeShelf={ this.props.changeShelf }
 						/>        
 
 						<Shelf 
 							title='Want To Read' 
 							shelfBooks={this.getShelfBooks("wantToRead")}
-							changeShelf={ this.changeShelf }
+							changeShelf={ this.props.changeShelf }
 			/>   
 
 
