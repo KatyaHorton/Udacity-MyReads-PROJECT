@@ -14,12 +14,23 @@ class BooksShelf extends React.Component {
 componentDidMount(){
 		BooksAPI.getAll().then((shelfBooks) => {
 		this.setState({ shelfBooks: shelfBooks})
-	})}	
+	})}	 
 
 getShelfBooks(shelfName){
-	return this.state.shelfBooks.filter((b) => b.shelf === shelfName)
+	return this.state.shelfBooks.filter((book) => book.shelf === shelfName)
 }
+
+
+changeShelf = (newBook, newShelf) => {
+	BooksAPI.update(newBook, newShelf).then(() => {
+		newBook.shelf = newShelf;
+		
+		var updatedShelf = this.state.books.filter( book => book.id !== newBook.id ).push(newBook)
 	
+		
+		this.setState({ shelfBooks: updatedShelf })
+	})
+}
 	
   render() {
     return (
@@ -33,19 +44,20 @@ getShelfBooks(shelfName){
 						<Shelf 
 							title='Currently Reading'
 							shelfBooks={this.getShelfBooks("currentlyReading")}
-							shelf='currentlyReading'
+							changeShelf={ this.changeShelf }
+
 						/>        
 
 						<Shelf 
 							title='Read' 
-							shelfBooks={this.getShelfBooks("wantToRead")}
-							shelf='read'
+							shelfBooks={this.getShelfBooks("read")}
+							changeShelf={ this.changeShelf }
 						/>        
 
 						<Shelf 
 							title='Want To Read' 
-							shelfBooks={this.getShelfBooks("read")}
-							shelf='wantToRead'
+							shelfBooks={this.getShelfBooks("wantToRead")}
+							changeShelf={ this.changeShelf }
 			/>   
 
 
