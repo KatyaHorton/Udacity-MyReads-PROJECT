@@ -27,7 +27,7 @@ changeShelf = (newBook, newShelf) => {
 		
 	this.setState(state => ({
                 shelfBooks: state.shelfBooks.filter(b => b.id !== newBook.id).concat([ newBook ])
-            }));
+            }))
 	})
 }
 	
@@ -44,7 +44,6 @@ changeShelf = (newBook, newShelf) => {
 							title='Currently Reading'
 							shelfBooks={this.getShelfBooks("currentlyReading")}
 							changeShelf={ this.changeShelf }
-
 						/>        
 
 						<Shelf 

@@ -21,17 +21,6 @@ class BooksSearch extends React.Component {
 		  })
 	}
  
-	
-changeShelf = (newBook, newShelf) => {
-	BooksAPI.update(newBook, newShelf).then(() => {
-		newBook.shelf = newShelf;
-		
-		var updatedShelf = this.state.books.filter( book => book.id !== newBook.id ).push(newBook)
-	
-		
-		this.setState({ shelfBooks: updatedShelf })
-	})
-}
 
 
   render() {
