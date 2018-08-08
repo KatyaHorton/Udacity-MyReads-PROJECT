@@ -68,6 +68,7 @@ changeShelf = (newBook, newShelf) => {
 			(<BooksSearch  
 			 	searchedBooks={ this.state.searchedBooks }
 			 	search = {this.search}
+				changeShelf = { this.changeShelf }
 					/>	
 		)}/>
 			 
