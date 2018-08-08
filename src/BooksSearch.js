@@ -27,15 +27,17 @@ class BooksSearch extends React.Component {
             </div>
             <div className="search-books-results">
               <ol className="books-grid">
-				 {this.props.searchedBooks.map((book) => (
-					<li key={book.id}>
+				 {this.props.searchedBooks.map((book) => {
+					  this.props.shelfBooks.map((shelfBook) => {
+                        (shelfBook.id === book.id ? book.shelf = shelfBooks.shelf : "none")
+                    										})
+							<li>
 						<Book 
 							  book={ book } 
 							  changeShelf={this.props.changeShelf}
-
-						/>
+						/> 
 					</li>
-														))}
+})}
 			  </ol>
             </div>
           </div>
