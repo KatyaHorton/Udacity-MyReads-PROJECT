@@ -21,6 +21,17 @@ class BooksSearch extends React.Component {
 		  })
 	}
  
+	
+changeShelf = (newBook, newShelf) => {
+	BooksAPI.update(newBook, newShelf).then(() => {
+		newBook.shelf = newShelf;
+		
+		var updatedShelf = this.state.books.filter( book => book.id !== newBook.id ).push(newBook)
+	
+		
+		this.setState({ shelfBooks: updatedShelf })
+	})
+}
 
 
   render() {
@@ -48,7 +59,9 @@ class BooksSearch extends React.Component {
               <ol className="books-grid">
 				 {this.state.searchedBooks.map((book) => (
 					<li key={book.id}>
-				 <Book book={ book } />
+				 <Book book={ book } 
+					   changeShelf={this.props.changeShelf}		
+	/>
 					</li>
 	))}
 			  </ol>
