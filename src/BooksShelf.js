@@ -6,7 +6,21 @@ import Shelf from './Shelf'
 
 class BooksShelf extends React.Component {
 
+  state = { 
+ 	shelfBooks: []
+  }
 
+
+componentDidMount(){
+		BooksAPI.getAll().then((shelfBooks) => {
+		this.setState({ shelfBooks: shelfBooks})
+	})}	
+
+getShelfBooks(shelfName){
+	return this.state.shelfBooks.filter((b) => b.shelf === shelfName)
+}
+	
+	
   render() {
     return (
      
@@ -15,20 +29,23 @@ class BooksShelf extends React.Component {
 				  <h1>MyReads</h1>
 			</div>
 			<div className="list-books-content">
-
+{console.log("this is shelfBooks now:", this.state.shelfBooks)}
 						<Shelf 
-							title='Currently Reading' 
-							books={this.props.books}	
+							title='Currently Reading'
+							shelfBooks={this.getShelfBooks("currentlyReading")}
+							shelf='currentlyReading'
 						/>        
 
 						<Shelf 
 							title='Read' 
-							books={this.props.books}
+							shelfBooks={this.getShelfBooks("wantToRead")}
+							shelf='read'
 						/>        
 
 						<Shelf 
 							title='Want To Read' 
-							books={this.props.books}
+							shelfBooks={this.getShelfBooks("read")}
+							shelf='wantToRead'
 			/>   
 
 

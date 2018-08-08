@@ -8,16 +8,7 @@ import { Route } from 'react-router-dom'
 
 class BooksApp extends React.Component {
 	
-  state = { 
- 	books: []
-  }
 
-
-componentDidMount(){
-		BooksAPI.getAll().then((books) => {
-		console.log("Books are: ", books)
-		this.setState({ books: books})
-	})}	
  
 
   render() {
@@ -25,13 +16,12 @@ componentDidMount(){
 
       <div className="app">
 
-		{console.log(this.state.books)}
+		
 	
 
         <Route exact path='/'
 			render={() =>
 			(<BooksShelf 
-			  books={this.state.books}
 			 />	
 		)}/>
 
@@ -39,7 +29,7 @@ componentDidMount(){
 		<Route path='/search'
 			render={() =>
 			(<BooksSearch 
-			  books={this.state.books}					
+			 				
 					/>	
 		)}/>
 			 

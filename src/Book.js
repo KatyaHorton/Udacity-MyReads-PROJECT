@@ -1,29 +1,10 @@
 import React from 'react'
 
-
+// note! 
 class Book extends React.Component {
  
-	
-	    state = {
-        currentShelf: this.props.book.shelf
-    };
 
-    changeShelf = (event) => {
-        this.props.changeShelf(this.props.book, event.target.value);
-        this.setState({
-            currentShelf: event.target.value,
-            updating: true
-        });
-    };
 
-    componentWillReceiveProps(){
-        // Remove the process indicator
-        this.setState({
-            updating: false
-        });
-    }
-	
-	
   render() {
 	  
     return (
