@@ -11,7 +11,7 @@ changeShelf = (event) => {
 	this.props.changeShelf(this.props.book, event.target.value);
 	this.setState({
 		currentShelf: event.target.value
-        		  })
+        		  });
     						}
 
   render() {	  
@@ -19,17 +19,9 @@ changeShelf = (event) => {
 		<div className='book' >
 			<div className='book-top'>
 				<div className="book-cover">
-					<img src={this.props.book.imageLinks ? this.props.book.imageLinks.thumbnail : img} alt={`book cover of ${this.props.book.title}`}/>
+					<img src={this.props.book.imageLinks ? this.props.book.imageLinks.thumbnail : img } alt={`book cover of ${this.props.book.title}`}/>
 			</div>
-		
-		
-		
-		
-		
-		
-		
-		
-		
+
 					<div className='book-shelf-changer'>
 						<select
 							value={this.state.currentShelf}

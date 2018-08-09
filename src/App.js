@@ -13,6 +13,27 @@ class BooksApp extends React.Component {
 		shelfBooks: []
 	}
 
+
+		 	shelfSet = () => {
+			
+					this.state.searchedBooks.forEach(searchedBook => {
+						 this.state.shelfBooks.forEach(shelfBook=> 
+														 { if
+								(searchedBook.id === shelfBook.id) {
+									
+									this.setState({
+										shelfBooks: []
+									})
+									
+									alert('yesss')}	
+														 }				
+													)	
+					})
+				   
+			
+				}
+
+
 	search = (query) => {
 		BooksAPI.search(query.trim())
 			.then(response => {
@@ -24,8 +45,15 @@ class BooksApp extends React.Component {
 					this.setState({
 						searchedBooks: []
 					})
-				}
+				};
+			
+			this.shelfSet();
+			
 			})}
+	
+	
+
+	
 	
 	componentDidMount() {
 		BooksAPI.getAll().then((shelfBooks) => {
@@ -33,6 +61,8 @@ class BooksApp extends React.Component {
 				shelfBooks: shelfBooks
 			})
 		});
+		
+		
 	}
 		
 	
@@ -44,6 +74,10 @@ class BooksApp extends React.Component {
 			}))
 		})
 	}
+
+	  
+
+  
 	
 	updateSearch = () => {
 		 this.setState({ searchedBooks: [] });
@@ -59,6 +93,7 @@ class BooksApp extends React.Component {
 						shelfBooks = { this.state.shelfBooks }
 						changeShelf = { this.changeShelf }
 						updateSearch = { this.updateSearch }
+			
 					/>	
 														)}
 				/>
