@@ -8,15 +8,27 @@ import Shelf from './Shelf'
 
 class BooksShelf extends React.Component {
 
+	
+/*
+	* assigns a shelf to the book 
+*/	
 getShelfBooks(shelfName){
 	return this.props.shelfBooks.filter((book) => book.shelf === shelfName)
 }
 
-	
+/*
+	* sets list to an empty array each time component mounts
+*/	
 componentDidMount(){
 	this.props.updateSearch();
 }	
 	
+	
+/*
+	* renders BooksShelves (main page)
+	* linked to '/' URL
+	* passes it's shelfBooks and changeShelf props further to Shelf component 
+*/	
   render() {
     return (
      
@@ -55,5 +67,9 @@ componentDidMount(){
     )
   }
 }
+
+/*
+	* exports BooksShelf component 
+*/
 
 export default BooksShelf

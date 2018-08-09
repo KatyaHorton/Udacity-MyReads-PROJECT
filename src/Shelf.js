@@ -5,7 +5,10 @@ import React from 'react'
 import Book from './Book'
 
 class Shelf extends React.Component {
- 
+ /*
+ 	* renders Sheves in the BooksShelf component 
+	* assings by title on the shelf matching books's shelf 
+ */
   render() {	  
     return (
         <div className="bookshelf">
@@ -25,5 +28,8 @@ class Shelf extends React.Component {
 			</div>
 	)}}
      
+/*
+	* exports Shelf component 
+*/	
 
 export default Shelf
