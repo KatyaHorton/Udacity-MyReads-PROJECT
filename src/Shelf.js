@@ -1,3 +1,6 @@
+/*
+	* imports all the nesessary components 
+*/
 import React from 'react'
 import Book from './Book'
 
