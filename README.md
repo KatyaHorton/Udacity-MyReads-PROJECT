@@ -10,8 +10,7 @@ MyReads will help you to sort your books according to their status in your life.
 
 * [Instructions](#instructions)
 * [Contributing](#contributing)
-* [Walkthrough the project's preparation](#Walkthrough the project's preparation)
-
+* [Walkthrough the project's preparation](#Walkthrough)
 
 ## Instructions
 
@@ -37,8 +36,7 @@ This repository is the starter code for all of the Udacity students. Therefore, 
 
 For details, check out [CONTRIBUTING.md](CONTRIBUTING.md).
 
-## Walkthrough the project's preparation
-
+## Walkthrough
 1. Cloning Starting Repository to the Local Server
 
 2. Creating [GitHub MyReads Repo](https://github.com/KatyaHorton/Udacity-MyReads-project/) on my GitHub account.
