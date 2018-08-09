@@ -1,4 +1,5 @@
 import React from 'react'
+import img from './book.png'
 
 class Book extends React.Component {
  
@@ -18,8 +19,17 @@ changeShelf = (event) => {
 		<div className='book' >
 			<div className='book-top'>
 				<div className="book-cover">
-					<img src={this.props.book.imageLinks ? this.props.book.imageLinks.thumbnail : "No image found"} alt={`book cover of ${this.props.book.title}`}/>
-				</div>
+					<img src={this.props.book.imageLinks ? this.props.book.imageLinks.thumbnail : img} alt={`book cover of ${this.props.book.title}`}/>
+			</div>
+		
+		
+		
+		
+		
+		
+		
+		
+		
 					<div className='book-shelf-changer'>
 						<select
 							value={this.state.currentShelf}
