@@ -10,7 +10,7 @@ class BooksSearch extends React.Component {
 
 /*
 	* renders BooksSearch page search field (input) and resut of books searched 
-	* linked to '/' URL
+	* is linked to '/search' URL
 	* passes the event target value to the search function from BooksApp (onChange method)
 	* creates an ordered list of books returned from search
 	* passes 'book' and 'changeShelf' to Book component as props 

@@ -8,8 +8,6 @@ import BooksShelf from './BooksShelf'
 import { Route } from 'react-router-dom'
 import * as BooksAPI from './BooksAPI'
 
-
-
 class BooksApp extends React.Component {
 
 /*
@@ -32,24 +30,23 @@ state = {
 	* checks if any books returned from search are also in booksShelf
 	* if yes, assigns the shelf property to them
 */
-				response.map((book) => {
+				
+		
+			if (response && response.length) {	response.map((book) => {
                     this.state.shelfBooks.map((pbook) => {
                         (pbook.id === book.id ? book.shelf = pbook.shelf : "none");
-                    })
-                }) 			
-/*
-	* checks if there are results which match our search
-	* if there are non - return and empty array
-*/
-			if (response && response.length) {
-					this.setState({
+                    });
+				
+                }); 	this.setState({
 						searchedBooks: response
-					})
-				} else {
+					});
+											 
+											 }	else {
 					this.setState({
 						searchedBooks: []
 					})
 				};
+
 
 			})}
 
