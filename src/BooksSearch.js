@@ -32,7 +32,6 @@ class BooksSearch extends React.Component {
 						<Book 
 							  book={ book } 
 							  changeShelf={this.props.changeShelf}
-							  assignShelf = { this.props.assignShelf }
 
 						/>
 					</li>

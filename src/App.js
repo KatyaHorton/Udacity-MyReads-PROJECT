@@ -15,18 +15,18 @@ class BooksApp extends React.Component {
 
 	search = (query) => {
 		BooksAPI.search(query.trim())
-			.then(books => {
+			.then(response => {
 			
-				books.map((book) => {
+				response.map((book) => {
                     this.state.shelfBooks.map((pbook) => {
                         (pbook.id === book.id ? book.shelf = pbook.shelf : "none");
                     })
-                }); 	
+                }) 	
 			
 			
-			if (books && books.length) {
+			if (response && response.length) {
 					this.setState({
-						searchedBooks: books
+						searchedBooks: response
 					})
 				} else {
 					this.setState({
