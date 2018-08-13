@@ -65,3 +65,13 @@ npm start
 9. Submit the application
 
 
+
+
+				  
+
+        var locations = [
+          {title: 'House of Kots', location: {lat: 51.4903, lng: 0.0038}},
+          {title: 'Cutty Sark Station', location: {lat: 51.4817, lng: -0.0085}},
+          {title: 'Gipsy Moth', location: {lat: 51.4832, lng: -0.0085}},
+          {title: 'Queens House', location: {lat: 51.4811, lng: 0.0037}}
+        ];			  

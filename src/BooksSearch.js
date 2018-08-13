@@ -5,9 +5,36 @@ import React from 'react'
 import './App.css'
 import { Link } from 'react-router-dom' 
 import Book from "./Book"
+import BooksSearchResults from './BooksSearchResults'
+import BooksNotFound from './BooksNotFound'
 
 class BooksSearch extends React.Component {
 
+state = {
+	searchQuery: ''
+}
+		
+checkResults = () => {
+	if (!this.props.booksNotFound) {
+		return 	<BooksSearchResults 
+						searchedBooks = { this.props.searchedBooks }
+						search = { this.search }
+						changeShelf = { this.props.changeShelf }
+						shelfBooks = { this.props.shelfBooks }
+						book = { this.props.book }
+			/>
+ 
+		
+			
+	} else if (this.props.booksNotFound && this.state.searchQuery.length > 0){
+		
+		return <BooksNotFound />
+	}
+}
+
+	
+	///this.setState({event.target.value})
+	
 /*
 	* renders BooksSearch page search field (input) and resut of books searched 
 	* is linked to '/search' URL
@@ -28,31 +55,22 @@ class BooksSearch extends React.Component {
 						placeholder="Search by title or author"
 						onChange={(event) => {
 							this.props.search(event.target.value)
+							this.setState({searchQuery: event.target.value})
+				
+							
 						}}
 					/>
               </div>
 
             </div>
-            <div className="search-books-results">
-              <ol className="books-grid">
-{/*
-	* maps over each returned object, assigns a key based on the id and returns a new array
-	* creates a list elements using Books components 
-	* passes 'book' and 'changeShelf' to Book component as props 
-*/}
-				  
-				  {this.props.searchedBooks.map((book) => (
-					<li key={book.id}>
-						<Book 
-							  book={ book } 
-							  changeShelf={this.props.changeShelf}
 
-						/>
-					</li>
-														))}
-			  </ol>
-            </div>
+	<div className="search-books-results">
+		
+{this.checkResults()}
+{console.log(this.state)}
+	</div>
           </div>
+	
     )
   }
 }

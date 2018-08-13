@@ -15,7 +15,8 @@ class BooksApp extends React.Component {
 */
 state = {
 		searchedBooks: [],
-		shelfBooks: []
+		shelfBooks: [],
+		booksNotFound: false
 	}
 
 /* 
@@ -23,6 +24,8 @@ state = {
   	* will be passed to BooksSearched component
 	* takes in string (query) 
 */
+	
+
 	search = (query) => {
 		BooksAPI.search(query.trim())
 			.then(response => {
@@ -30,26 +33,35 @@ state = {
 	* checks if any books returned from search are also in booksShelf
 	* if yes, assigns the shelf property to them
 */
-				
+	
+		
 		
 			if (response && response.length) {	response.map((book) => {
                     this.state.shelfBooks.map((pbook) => {
                         (pbook.id === book.id ? book.shelf = pbook.shelf : "none");
                     });
 				
-                }); 	this.setState({
-						searchedBooks: response
+                }); 	
+											  	this.setState({
+						searchedBooks: response,
+						booksNotFound: false
 					});
 											 
 											 }	else {
 					this.setState({
-						searchedBooks: []
+						searchedBooks: [], 
+						booksNotFound:true
 					})
 				};
 
+			
+
+	
 
 			})}
 
+	
+	 
 
 /*
 	* gets called automatically straight after componet 
@@ -113,6 +125,7 @@ state = {
 						search = { this.search }
 						changeShelf = { this.changeShelf }
 						shelfBooks = { this.state.shelfBooks }
+						booksNotFound = { this.state.booksNotFound }
 					  />	
 							)}
 			/>
