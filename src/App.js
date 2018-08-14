@@ -16,7 +16,12 @@ class BooksApp extends React.Component {
 state = {
 		searchedBooks: [],
 		shelfBooks: [],
-		booksNotFound: false
+		booksNotFound: false, 
+		shelves: [		
+			{title: 'Currently Reading', getBooks: 'currentlyReading'},
+			{title: 'Want to Read', getBooks: 'wantToRead'},
+			{title: 'Read', getBooks: 'read'}
+		]
 	}
 
 /* 
@@ -114,6 +119,7 @@ state = {
 						shelfBooks = { this.state.shelfBooks }
 						changeShelf = { this.changeShelf }
 						updateSearch = { this.updateSearch }
+						shelves = { this.state.shelves } 
 					/>	
 														)}
 				/>

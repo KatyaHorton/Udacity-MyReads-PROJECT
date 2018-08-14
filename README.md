@@ -67,7 +67,10 @@ npm start
 
 
 
-				  
+				  			  map = new google.maps.Map(document.getElementById('map'), {
+              							center: {lat: 51.4826, lng: 0},
+            							zoom: 13				
+									   });
 
         var locations = [
           {title: 'House of Kots', location: {lat: 51.4903, lng: 0.0038}},

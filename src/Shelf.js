@@ -15,6 +15,9 @@ class Shelf extends React.Component {
 			<h2 className="bookshelf-title">{this.props.title}</h2>
 				<div className="bookshelf-books">
 					<ol className="books-grid">
+		
+		
+		
 		 				{this.props.shelfBooks.map((book) => (
 							<li key={book.id}>
 				 				<Book 
@@ -23,6 +26,8 @@ class Shelf extends React.Component {
 								/>
 							</li>
 						))}
+	
+	
 					</ol>
 				</div>
 			</div>
