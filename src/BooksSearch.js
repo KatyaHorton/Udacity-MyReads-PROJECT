@@ -10,6 +10,9 @@ import BooksNotFound from './BooksNotFound'
 
 class BooksSearch extends React.Component {
 
+
+	
+	
 state = {
 	searchQuery: ''
 }
@@ -33,8 +36,6 @@ checkResults = () => {
 }
 
 	
-	///this.setState({event.target.value})
-	
 /*
 	* renders BooksSearch page search field (input) and resut of books searched 
 	* is linked to '/search' URL
@@ -57,7 +58,6 @@ checkResults = () => {
 							this.props.search(event.target.value)
 							this.setState({searchQuery: event.target.value})
 				
-							
 						}}
 					/>
               </div>
